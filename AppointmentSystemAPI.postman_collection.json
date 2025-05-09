@@ -1,0 +1,497 @@
+{
+    "info": {
+        "_postman_id": "YOUR_UNIQUE_ID",
+        "name": "Appointment System API - Exercise Test",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Doctors (Manual Insertion - Use POST to create)",
+            "item": [
+                {
+                    "name": "Register Doctor",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n\t\"nombre\": \"Elena\",\n\t\"apellidoPaterno\": \"Vargas\",\n\t\"apellidoMaterno\": \"Diaz\",\n\t\"especialidad\": \"General\"\n}"
+                        },
+                        "url": {
+                            "raw": "http://localhost:8080/api/doctors",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8080",
+                            "path": [
+                                "api",
+                                "doctors"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Doctor by ID",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "http://localhost:8080/api/doctors/DOCTOR_ID",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8080",
+                            "path": [
+                                "api",
+                                "doctors",
+                                "DOCTOR_ID"
+                            ]
+                        },
+                        "description": "Replace DOCTOR_ID with an actual ID obtained after registering a doctor."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get All Doctors",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "http://localhost:8080/api/doctors",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8080",
+                            "path": [
+                                "api",
+                                "doctors"
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Consulting Rooms (Manual Insertion - Use POST to create)",
+            "item": [
+                {
+                    "name": "Register Consulting Room",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n\t\"numero\": 205,\n\t\"piso\": 2\n}"
+                        },
+                        "url": {
+                            "raw": "http://localhost:8080/api/consultorios",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8080",
+                            "path": [
+                                "api",
+                                "consultorios"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Consulting Room by ID",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "http://localhost:8080/api/consultorios/CONSULTORIO_ID",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8080",
+                            "path": [
+                                "api",
+                                "consultorios",
+                                "CONSULTORIO_ID"
+                            ]
+                        },
+                        "description": "Replace CONSULTORIO_ID with an actual ID obtained after registering a consulting room."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get All Consulting Rooms",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "http://localhost:8080/api/consultorios",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8080",
+                            "path": [
+                                "api",
+                                "consultorios"
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Appointments (Dynamic Generation - Use POST to create)",
+            "item": [
+                {
+                    "name": "Request Appointment (Alta de cita)",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n\t\"fecha\": \"2025-05-10\",\n\t\"hora\": \"14:00\",\n\t\"pacienteNombre\": \"Carlos Fuentes\",\n\t\"doctorId\": \"DOCTOR_ID\",\n\t\"consultorioId\": \"CONSULTORIO_ID\"\n}"
+                        },
+                        "url": {
+                            "raw": "http://localhost:8080/api/citas/solicitud",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8080",
+                            "path": [
+                                "api",
+                                "citas",
+                                "solicitud"
+                            ]
+                        },
+                        "description": "Replace DOCTOR_ID and CONSULTORIO_ID with actual IDs."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Request Appointment (Same Doctor, Same Time - Should Fail)",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n\t\"fecha\": \"2025-05-10\",\n\t\"hora\": \"14:00\",\n\t\"pacienteNombre\": \"Laura Vargas\",\n\t\"doctorId\": \"DOCTOR_ID\",\n\t\"consultorioId\": \"ANOTHER_CONSULTORIO_ID\"\n}"
+                        },
+                        "url": {
+                            "raw": "http://localhost:8080/api/citas/solicitud",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8080",
+                            "path": [
+                                "api",
+                                "citas",
+                                "solicitud"
+                            ]
+                        },
+                        "description": "Replace DOCTOR_ID and ANOTHER_CONSULTORIO_ID with actual IDs. Should fail due to the same doctor at the same time."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Request Appointment (Same Consulting Room, Same Time - Should Fail)",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n\t\"fecha\": \"2025-05-10\",\n\t\"hora\": \"14:00\",\n\t\"pacienteNombre\": \"Pedro Gómez\",\n\t\"doctorId\": \"ANOTHER_DOCTOR_ID\",\n\t\"consultorioId\": \"CONSULTORIO_ID\"\n}"
+                        },
+                        "url": {
+                            "raw": "http://localhost:8080/api/citas/solicitud",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8080",
+                            "path": [
+                                "api",
+                                "citas",
+                                "solicitud"
+                            ]
+                        },
+                        "description": "Replace ANOTHER_DOCTOR_ID and CONSULTORIO_ID with actual IDs. Should fail due to the same consulting room at the same time."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Request Appointment (Patient Same Consulting Room < 2 hours - Should Fail)",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n\t\"fecha\": \"2025-05-10\",\n\t\"hora\": \"15:30\",\n\t\"pacienteNombre\": \"Carlos Fuentes\",\n\t\"doctorId\": \"ANOTHER_DOCTOR_ID\",\n\t\"consultorioId\": \"CONSULTORIO_ID\"\n}"
+                        },
+                        "url": {
+                            "raw": "http://localhost:8080/api/citas/solicitud",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8080",
+                            "path": [
+                                "api",
+                                "citas",
+                                "solicitud"
+                            ]
+                        },
+                        "description": "Assuming Carlos Fuentes has an appointment at 14:00 in CONSULTORIO_ID. This should fail."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Request Appointment (Patient One Per Day - Should Fail)",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n\t\"fecha\": \"2025-05-10\",\n\t\"hora\": \"16:00\",\n\t\"pacienteNombre\": \"Carlos Fuentes\",\n\t\"doctorId\": \"ANOTHER_DOCTOR_ID\",\n\t\"consultorioId\": \"ANOTHER_CONSULTORIO_ID\"\n}"
+                        },
+                        "url": {
+                            "raw": "http://localhost:8080/api/citas/solicitud",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8080",
+                            "path": [
+                                "api",
+                                "citas",
+                                "solicitud"
+                            ]
+                        },
+                        "description": "Assuming Carlos Fuentes already has an appointment on 2025-05-10. This should fail."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Request Appointment (Doctor Max 2 Before 3 PM)",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n\t\"fecha\": \"2025-05-10\",\n\t\"hora\": \"11:00\",\n\t\"pacienteNombre\": \"Sofia Rojas\",\n\t\"doctorId\": \"DOCTOR_ID\",\n\t\"consultorioId\": \"ANOTHER_CONSULTORIO_ID\"\n}"
+                        },
+                        "url": {
+                            "raw": "http://localhost:8080/api/citas/solicitud",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8080",
+                            "path": [
+                                "api",
+                                "citas",
+                                "solicitud"
+                            ]
+                        },
+                        "description": "Test scheduling the 3rd appointment before 3 PM for a doctor (should fail if 2 already exist)."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Request Appointment (Doctor Max 1 After 3 PM)",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n\t\"fecha\": \"2025-05-10\",\n\t\"hora\": \"16:00\",\n\t\"pacienteNombre\": \"Daniel Castro\",\n\t\"doctorId\": \"DOCTOR_ID\",\n\t\"consultorioId\": \"ANOTHER_CONSULTORIO_ID\"\n}"
+                        },
+                        "url": {
+                            "raw": "http://localhost:8080/api/citas/solicitud",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8080",
+                            "path": [
+                                "api",
+                                "citas",
+                                "solicitud"
+                            ]
+                        },
+                        "description": "Test scheduling the 2nd appointment after 3 PM for a doctor (should fail if one already exists)."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Consult Doctor's Appointments by Date (Dr. Ramos - Replace ID and Date)",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "http://localhost:8080/api/citas/doctor/DOCTOR_ID/fecha/YYYY-MM-DD",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8080",
+                            "path": [
+                                "api",
+                                "citas",
+                                "doctor",
+                                "DOCTOR_ID",
+                                "fecha",
+                                "YYYY-MM-DD"
+                            ]
+                        },
+                        "description": "Replace DOCTOR_ID with Dr. Ramos's ID and YYYY-MM-DD with the desired date (today or tomorrow)."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Consult Consulting Room's Appointments by Date",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "http://localhost:8080/api/citas/consultorio/CONSULTORIO_ID/fecha/YYYY-MM-DD",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8080",
+                            "path": [
+                                "api",
+                                "citas",
+                                "consultorio",
+                                "CONSULTORIO_ID",
+                                "fecha",
+                                "YYYY-MM-DD"
+                            ]
+                        },
+                        "description": "Replace CONSULTORIO_ID and YYYY-MM-DD with actual values."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Cancel Appointment (Within 24 Hours - Should Succeed)",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{}"
+                        },
+                        "url": {
+                            "raw": "http://localhost:8080/api/citas/CITA_ID/cancelar",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8080",
+                            "path": [
+                                "api",
+                                "citas",
+                                "CITA_ID",
+                                "cancelar"
+                            ]
+                        },
+                        "description": "Replace CITA_ID with the ID of an appointment scheduled less than 24 hours in the future."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Cancel Appointment (More Than 24 Hours - Should Fail)",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{}"
+                        },
+                        "url": {
+                            "raw": "http://localhost:8080/api/citas/ANOTHER_CITA_ID/cancelar",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8080",
+                            "path": [
+                                "api",
+                                "citas",
+                                "ANOTHER_CITA_ID",
+                                "cancelar"
+                            ]
+                        },
+                        "description": "Replace ANOTHER_CITA_ID with the ID of an appointment scheduled more than 24 hours in the future."
+                    },
+                    "response": []
+                }
+            ]
+        }
+    ]
+}
