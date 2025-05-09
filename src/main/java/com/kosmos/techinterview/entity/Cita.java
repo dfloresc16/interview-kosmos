@@ -29,4 +29,72 @@ public class Cita {
     @Column(nullable = false)
     private String estado;
 
+    public Cita() {
+    }
+
+    public Cita(Long id, LocalDate date, LocalTime hour, String namePacient, Doctor doctor, Consultorio consultorio, String estado) {
+        this.id = id;
+        this.date = date;
+        this.hour = hour;
+        this.namePacient = namePacient;
+        this.doctor = doctor;
+        this.consultorio = consultorio;
+        this.estado = estado;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public LocalTime getHour() {
+        return hour;
+    }
+
+    public void setHour(LocalTime hour) {
+        this.hour = hour;
+    }
+
+    public String getNamePacient() {
+        return namePacient;
+    }
+
+    public void setNamePacient(String namePacient) {
+        this.namePacient = namePacient;
+    }
+
+    public Doctor getDoctor() {
+        return doctor;
+    }
+
+    public void setDoctor(Doctor doctor) {
+        this.doctor = doctor;
+    }
+
+    public Consultorio getConsultorio() {
+        return consultorio;
+    }
+
+    public void setConsultorio(Consultorio consultorio) {
+        this.consultorio = consultorio;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
 }
