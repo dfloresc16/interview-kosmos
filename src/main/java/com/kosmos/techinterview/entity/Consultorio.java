@@ -9,13 +9,14 @@ public class Consultorio {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(unique = true, nullable = false,name = "id")
     private Long id;
 
     private Long numberConsultorio;
 
     private Integer piso;
 
-    @OneToMany(mappedBy = "consultorio") // One consulting room can have many appointments
+    @OneToMany(mappedBy = "consultorio")
     private List<Cita> citas;
 
     public Consultorio() {
@@ -58,6 +59,16 @@ public class Consultorio {
 
     public void setCitas(List<Cita> citas) {
         this.citas = citas;
+    }
+
+    @Override
+    public String toString() {
+        return "Consultorio{" +
+                "id=" + id +
+                ", numberConsultorio=" + numberConsultorio +
+                ", piso=" + piso +
+                ", citas=" + citas +
+                '}';
     }
 }
 

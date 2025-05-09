@@ -1,19 +1,21 @@
 package com.kosmos.techinterview.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Doctor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(unique = true, nullable = false,name = "id")
     private Long id;
+    @Column(name = "name")
     private String name;
+    @Column(name = "lastname")
     private String lastName;
+    @Column(name = "secondlastname")
     private String secondLastName;
+    @Column(name = "specialty")
     private String specialty;
 
     public Doctor() {
@@ -65,5 +67,16 @@ public class Doctor {
 
     public void setSpecialty(String specialty) {
         this.specialty = specialty;
+    }
+
+    @Override
+    public String toString() {
+        return "Doctor{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", secondLastName='" + secondLastName + '\'' +
+                ", specialty='" + specialty + '\'' +
+                '}';
     }
 }

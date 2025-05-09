@@ -69,7 +69,6 @@ public class CitaController {
             log.warn(e.getMessage());
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } catch (IllegalStateException e) {
-            log.warn(e.getMessage());
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
     }

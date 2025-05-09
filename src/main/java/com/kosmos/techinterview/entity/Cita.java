@@ -12,18 +12,21 @@ public class Cita {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "date")
     private LocalDate date;
 
+    @Column(name = "hora")
     private LocalTime hora;
 
+    @Column(name = "namePacient")
     private String namePacient;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "doctorId", nullable = false)
+    @JoinColumn(name = "doctorId")
     private Doctor doctor;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "consultorioId", nullable = false)
+    @JoinColumn(name = "consultorioId")
     private Consultorio consultorio;
 
     @Column(nullable = false)
@@ -96,5 +99,18 @@ public class Cita {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    @Override
+    public String toString() {
+        return "Cita{" +
+                "id=" + id +
+                ", date=" + date +
+                ", hora=" + hora +
+                ", namePacient='" + namePacient + '\'' +
+                ", doctor=" + doctor +
+                ", consultorio=" + consultorio +
+                ", estado='" + estado + '\'' +
+                '}';
     }
 }
