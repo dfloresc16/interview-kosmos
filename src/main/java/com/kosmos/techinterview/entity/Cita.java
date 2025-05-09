@@ -14,7 +14,7 @@ public class Cita {
 
     private LocalDate date;
 
-    private LocalTime hour;
+    private LocalTime hora;
 
     private String namePacient;
 
@@ -35,7 +35,7 @@ public class Cita {
     public Cita(Long id, LocalDate date, LocalTime hour, String namePacient, Doctor doctor, Consultorio consultorio, String estado) {
         this.id = id;
         this.date = date;
-        this.hour = hour;
+        this.hora = hour;
         this.namePacient = namePacient;
         this.doctor = doctor;
         this.consultorio = consultorio;
@@ -59,11 +59,11 @@ public class Cita {
     }
 
     public LocalTime getHour() {
-        return hour;
+        return hora;
     }
 
     public void setHour(LocalTime hour) {
-        this.hour = hour;
+        this.hora = hour;
     }
 
     public String getNamePacient() {
